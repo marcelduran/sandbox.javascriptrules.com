@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>YUI Base Page</title>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
+	<style type="text/css">
+		#custom-doc {width:38.46em;*width:37.53em;min-width:500px; margin:auto; text-align:left;}
+		strong {font-weight:bold;}
+		h4 {font-weight:bold; font-size:116%; margin-bottom:10px;}
+
+
+		#hd h1 {font-size:167%; font-weight:bold; margin:15px 0;}
+		#hd h2 {font-size:146.5%; font-weight:bold; margin-bottom:15px;}
+
+		#hd h1 a {color:#237AB2; text-decoration:none;}
+		#hd h2 a {color:#666; text-decoration:none;}
+		#hd h2 a em {color:#237AB2; font-size:12px; font-weight:normal;}
+
+		#settings {
+			padding:7px 5px;
+			margin-bottom:10px;
+			border:1px solid #999;
+			background:#c0c0c0;
+			-moz-border-radius:5px;
+			-webkit-border-radius:5px;
+		}
+		#settings .space {float:left; margin-right:25px;}
+		#settings .last {float:left; margin-right:0;}
+		#settings #runs {width:40px;}
+		#settings #cbox {vertical-align:middle;}
+		#settings #rngStart,
+		#settings #rngEnd {width:60px;}
+
+		#ta textarea {width:100%; border:1px solid #666; height:248px;}
+		#reports {overflow-y:auto; height:248px; border:1px solid #666; font-family:monospace;}
+		#reports div:first-of-type {opacity:1;}
+		#reports div {opacity:0.5;}
+		#reports .report {margin:5px; padding:5px; border:1px solid black;}
+
+		#ft {
+			padding:7px 5px;
+			margin-top:10px;
+			border:1px solid #999;
+			background:#c0c0c0;
+			-moz-border-radius:5px;
+			-webkit-border-radius:5px;
+		}
+
+		.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+		.clearfix{*display:inline-block;}
+		* html .clearfix{height:1%;}
+		.clearfix{display:block;}
+	</style>
+	</head>
+	<body>
+	<div id="custom-doc" class="yui-t7">
+		<div id="hd">
+			<h1><a href="http://javascriptrules.com/">JavaScriptRules.com</a></h1>
+			<h2><a href="http://javascriptrules.com/2009/10/16/finding-prime-numbers-with-javascript/">Finding prime numbers with Javascript <em>go back to the article &raquo;</em></a></h2>
+		</div>
+
+
+		<div id="bd">
+			<div class="yui-g">
+				<div id="settings" class="clearfix">
+					<div class="space">
+						<strong>Range:</strong>
+						<input type="text" value="1" id="rngStart"> to 
+						<input type="text" value="10" id="rngEnd">
+					</div>
+					<div class="space">
+						<strong>Runs: </strong>
+						<input id="runs" type="text" value="1">
+					</div>
+					<div class="space">
+						<input type="checkbox" id="cbox" checked="checked"> <label for="cbox">output</label>
+					</div>
+					<div class="space last">
+						<button id="run" disabled="disabled" class="foo">Get primes</button>
+					</div>
+				</div>
+			</div>
+			<div class="yui-g">
+				<div class="yui-u first">
+					<h4>Output</h4>
+					<div id="ta">
+						<textarea id="output"></textarea>
+					</div>
+				</div>
+				<div class="yui-u">
+						<h4>Reports</h4>
+					<div id="reports"></div>
+				</div>
+			</div>
+		</div>
+	<div id="ft">
+		<strong>Source Codes: </strong>
+		<a href="prime1.js">Prime1</a> | 
+		<a href="prime1-runner.js">Prime1 Test Runner</a> | 
+		<a href="prime1_rhino.js">Prime1 Rhino version</a>
+	</div>
+</div>
+<script type="text/javascript" src="http://yui.yahooapis.com/3.0.0/build/yui/yui-min.js"></script>
+<script type="text/javascript" src="prime1.js"></script>
+<script type="text/javascript" src="prime1-runner.js"></script>
+<script>(function(d,a){var c=d.getElementsByTagName(a)[0],b=d.createElement(a);_gaq=[["_setAccount","UA-8130902-1"],["_trackPageview"],["_trackPageLoadTime"]];b.src="http://www.google-analytics.com/ga.js";b.async=1;setTimeout(function(){c.parentNode.insertBefore(b,c)},0)}(document,"script"));</script>
+</body>
+</html>

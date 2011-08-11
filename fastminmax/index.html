@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>JavaScript Rules :: Fast min/max</title>
+    </head>
+    <body>
+        <h2><a href="http://www.javascriptrules.com/2009/09/23/fast-minmax-in-arrays/">JavaScript Rules :: Fast min/max</a></h2>
+        <p>
+            Choose the array size and click <em>Run</em> button. An array of random integer numbers ranging from 0 to <em>[array size]</em> will be generated. To get the largest number within the array, the first attempt is using a <em>for</em> loop, then an optimized version of this same algorithm and last but not least using Math.max.
+        </p>
+        <p>
+            Array size: <input id="arraysize" type="text" size="10" value="1000000">
+            <button id="run">Run</button>
+        </p>
+        <table>
+            <tr><td>Array creation:</td><td id="arraycreation">0</td><td><em>ms</em></td></tr>
+            <tr><td>For loop:</td><td id="forloop">0</td><td><em>ms</em></td></tr>
+            <tr><td>Optmized for:</td><td id="optloop">0</td><td><em>ms</em></td></tr>
+            <tr><td>Math.max:</td><td id="mathmax">0</td><td><em>ms</em></td></tr>
+        </table>
+        <p id="error"></p>
+        <h3>Read the <a href="http://www.javascriptrules.com/2009/09/23/fast-minmax-in-arrays/">full post</a>.</h3>
+        <script type="text/javascript" src="fastminmax.js"></script>
+        <script>(function(d,a){var c=d.getElementsByTagName(a)[0],b=d.createElement(a);_gaq=[["_setAccount","UA-8130902-1"],["_trackPageview"],["_trackPageLoadTime"]];b.src="http://www.google-analytics.com/ga.js";b.async=1;setTimeout(function(){c.parentNode.insertBefore(b,c)},0)}(document,"script"));</script>
+    </body>
+</html>

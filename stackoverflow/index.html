@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>JavaScript Rules :: Stack Overflow</title>
+    </head>
+    <body>
+        <h2>JavaScript Rules :: Stack Overflow</h2>
+        <p>The script on this page contains a function that recursively calls itself incrementing a counter until a stack overflow occurs and display the results as follows:</p>
+        <div id="results"></div>
+        <h3>You can read the full post <a href="http://javascriptrules.com/2009/06/30/limitation-on-call-stacks/">here</a>.</h3>
+        <script type="text/javascript">
+            var i = 0;
+
+            function recurse () {
+                i++;
+                recurse();
+            }
+
+            try {
+                recurse();
+            } catch (ex) {
+                var p, s = '';
+                for (var prop in ex) {
+                    p = ex[prop].toString();
+                    s += prop + ': ' + p.slice(0, 100) + (p.length > 100 ? '...' : '') + '<br>';
+                }
+                document.getElementById('results').innerHTML = 'stack size: ' + i + '<br>' + s;
+            }
+        </script>
+        <script>(function(d,a){var c=d.getElementsByTagName(a)[0],b=d.createElement(a);_gaq=[["_setAccount","UA-8130902-1"],["_trackPageview"],["_trackPageLoadTime"]];b.src="http://www.google-analytics.com/ga.js";b.async=1;setTimeout(function(){c.parentNode.insertBefore(b,c)},0)}(document,"script"));</script>
+    </body>
+</html>
