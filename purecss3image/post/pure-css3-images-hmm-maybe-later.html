@@ -1,5 +1,3 @@
-<style>body {width: 650px; margin: 0 auto; font:93% sans-serif; line-height: 140%;}</style>
-
 <h2>Pure CSS3 images? Hmm, maybe later</h2>
 
 <p>Requested by several designers at Yahoo! for the original <a href="http://d.yimg.com/jc/ydn/speedometer.png">YSlow logo</a> PSD to be used in promotional materials such as t-shirts, posters, flyers, etc in some <a href="http://girlgeekdinner.pathable.com/">events</a> <a href="http://www.jacobsschool.ucsd.edu/student/student_newsletter/item.sfe?type=feed&item_id=1675&feed_id=17&item_type=event">that</a> <a href="http://velocityconf.com/velocity2011/public/schedule/detail/20287">occurred</a> <a href="http://en.oreilly.com/velocity-mar2011/public/schedule/detail/18635">along</a> <a href="http://developer.yahoo.com/blogs/ydn/posts/2011/06/yslowmobile/">this</a> <a href="http://velocity.oreilly.com.cn/2011/index.php?func=autobio&name=Betty+Tso">year</a>, I had no idea where it was ever since I joined the <a href="http://developer.yahoo.com/performance/">Exceptional Performance Team</a> to take care of <a href="http://getyslow.com/">YSlow</a> amongst other performance tools. In order to solve this problem I decided to rebuild it from scratch because it doesn't seem so complicated, the problem was I'm a speed freak, not a designer so inspired by the famous <a href="http://www.subcide.com/articles/pure-css-twitter-fail-whale/">pure css Twitter fail whale</a> I put my CSS muscles to work out focusing obviously on performance to provide those designers a <a href="http://jsfiddle.net/marcelduran/g7KvW/5/embedded/result/">scalable YSlow logo</a> for their delight as well as potentially having a smaller image payload to be used on the web.</p>
@@ -64,11 +62,11 @@
 <p>With that pure CSS3 image working decently at least on Chrome I was able to provide the designers what they were after and that was enough for me to start my performance benchmarking. I know one might argue it's possible to make it work better on other browsers with more DOM elements and/or more CSS selectors/rules, but that was a time consuming task and I was working on it during my spare time, so enough with CSS and let's see what we are here for.</p>
 
 <h3>Benchmarking</h3>
-<p>In order to compare real image files versus CSS3 generated ones, I created a few pages containing only one image per page, either real files URL and <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a> (<code>&ltimg src="..."&gt;</code>) or CSS3 (HTML + CSS <code>&lt;style&gt;</code> block in the same page).</p>
+<p>In order to compare <a href="https://github.com/marcelduran/sandbox.javascriptrules.com/tree/gh-pages/purecss3image/images">real image files</a> versus <a href="https://github.com/marcelduran/sandbox.javascriptrules.com/tree/gh-pages/purecss3image/payload">CSS3 generated ones</a>, I created a few pages containing only one image per page, either real files URL and <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a> (<code>&ltimg src="..."&gt;</code>) or CSS3 (HTML + CSS <code>&lt;style&gt;</code> block in the same page).</p>
 <h4>Payload</h4>
-<p>Hosting these pages in a local Apache server I was able to fetch them with and without compression (<code>Accept-Encoding: gzip,deflate</code>) via <a href="http://curl.haxx.se/"><code>curl</code></a> getting the content length for the CSS3 and data URI ones and the real images URL obviously without compression. The minified with compression lengths were used as payload per page.</p>
+<p>Hosting <a href="https://github.com/marcelduran/sandbox.javascriptrules.com/tree/gh-pages/purecss3image/payload">these pages</a> in a local Apache server I was able to fetch them with and without compression (<code>Accept-Encoding: gzip,deflate</code>) via <a href="http://curl.haxx.se/"><code>curl</code></a> getting the content length for the CSS3 and data URI ones and the real images URL obviously without compression. The minified with compression lengths were used as payload per page in this benchmark.</p>
 <h4>Rendering</h4>
-<p>Adding a small script at the bottom of these pages that reloads the page 100 times with 1 second interval using <a href="https://developer.mozilla.org/en/DOM/Storage#sessionStorage"><code>sessionStorage</code></a> for counting and with <a href="http://code.google.com/chrome/devtools/docs/timeline.html">Chrome Developer Tools: Timeline Panel</a> recording the page activity, I was able to export the logged data then with a NodeJS script I could extract and filter only the timing related to the rendering activity, cleaning the top and bottom 5% of the sample to remove some noisy data then getting the average in milliseconds.</p>
+<p>Adding a small script at the bottom of <a href="https://github.com/marcelduran/sandbox.javascriptrules.com/tree/gh-pages/purecss3image/rendering">these pages</a> that reloads the page 100 times with 1 second interval using <a href="https://developer.mozilla.org/en/DOM/Storage#sessionStorage"><code>sessionStorage</code></a> for counting and with <a href="http://code.google.com/chrome/devtools/docs/timeline.html">Chrome Developer Tools: Timeline Panel</a> recording the page activity, I was able to export the <a href="https://github.com/marcelduran/sandbox.javascriptrules.com/tree/gh-pages/purecss3image/rendering/logs">logged data</a> then with a <a href="https://github.com/marcelduran/sandbox.javascriptrules.com/blob/gh-pages/purecss3image/rendering/summary.js">NodeJS script</a> I could extract and filter only the timing related to the rendering activity, cleaning the top and bottom 5% of the sample to remove some noisy data then <a href="https://github.com/marcelduran/sandbox.javascriptrules.com/blob/gh-pages/purecss3image/rendering/results.txt">getting the average</a> in milliseconds.</p>
 <p><img src="images/timeline.png" alt"Chrome Developer Tools: Timeline Panel"></p>
 <h4>The compared versions of YSlow logo image</h4>
 <table>
@@ -124,21 +122,21 @@
         </tr>
         <tr>
             <td>WebP</td>
-            <td>Smallest</td>
+            <td>Smallest image file</td>
             <td>Not supported by all major browsers, no transparency</td>
             <td align="right">4066</td>
             <td align="right">1.769</td>
         </tr>
         <tr>
             <td>WebP inline</td>
-            <td>Smallest image file</td>
+            <td>Smallest file</td>
             <td>Non x-browser, no transparency, non IE &lt; 8</td>
             <td align="right">4175</td>
             <td align="right">5.701</td>
         </tr>
         <tr>
             <td>JPG inline</td>
-            <td>Smaller image file, x-browser</td>
+            <td>Smaller file, x-browser</td>
             <td>No transparency, non IE &lt; 8</td>
             <td align="right">7881</td>
             <td align="right">3.313</td>
@@ -159,7 +157,7 @@
         </tr>
         <tr>
             <td>PNG8 inline</td>
-            <td>Small image file, transparency</td>
+            <td>Small file, transparency</td>
             <td>Up to 256 colors, non IE &lt; 8</td>
             <td align="right">8399</td>
             <td align="right">4.267</td>
@@ -167,7 +165,7 @@
         <tr>
             <td>PNG24</td>
             <td>High quality, alpha channel</td>
-            <td>Large file, buggy on IE &lt; 7</td>
+            <td>Large image file, buggy on IE &lt; 7</td>
             <td align="right">27391</td>
             <td align="right">1.736</td>
         </tr>
