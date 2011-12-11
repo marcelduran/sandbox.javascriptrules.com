@@ -1,0 +1,15 @@
+<style type="text/css">.ys{width:250px}.ys .a{padding:1.5%;border-radius:100% 100% 0 0 / 166% 166% 0 0;background:#b0b4b7;background:linear-gradient(left,#b0b4b7 8%,#3f3f40 54%)}.ys .b{padding:5% 5% 0 5%;border-radius:100% 100% 0 0 / 166% 166% 0 0;background:#dadadc;background:linear-gradient(left,#dadadc 8%,#3a3a3c 54%)}.ys .c{padding:2.5% 2.5% 0 2.5%;border-radius:100% 100% 0 0 / 166% 166% 0 0;background:#e1e4e5;background:linear-gradient(left,#e1e4e5 8%,#010204 54%)}.ys .d{padding:2%;background-color:#0c1c48;border-radius:100% 100% 0 0 / 166% 166% 0 0}.ys .e{padding:58% 5% 0 5%;position:relative;overflow:hidden;border-radius:100% 100% 0 0 / 166% 166% 0 0;background:#394d97;background:linear-gradient(left,#394d97 8%,#282963 54%)}.ys .f{padding:50% 56%;position:absolute;top:11%;left:0;border-radius:166% 133% 0 0 / 166% 139% 0 0;background:#2c3e90;background:linear-gradient(left,#2c3e90 8%,#120744 54%)}.ys .g{padding:50% 74%;position:absolute;bottom:-135%;left:-16%;border-radius:100%;background:#99c1e2;background:linear-gradient(top,#99c1e2 1%,#7aaed9 3%,#2f6bb0 12%)}.ys .t{width:14%;height:6%;background-color:#e7e8e9;position:absolute;border-radius:30% / 100%}.ys .t1{left:7%;bottom:18%}.ys .t2{left:11%;bottom:47%;transform:rotate(30deg)}.ys .t3{left:24%;bottom:70%;transform:rotate(60deg)}.ys .t4{left:44%;top:16%;transform:rotate(90deg)}.ys .t5{right:24%;bottom:70%;transform:rotate(-60deg)}.ys .t6{right:11%;bottom:47%;transform:rotate(-30deg)}.ys .t7{right:7%;bottom:18%}.ys .p{padding-bottom:52%;width:11%;position:absolute;left:50%;bottom:20%;margin-left:-5%;transform:rotate(20deg)}.ys:hover .p{transform:rotate(90deg)}.ys .pw{position:absolute;top:0;right:0;bottom:0;left:0}.ys .pw>:first-child{border-right:1px solid transparent;margin-right:-2px}.ys .p::after{content:"";position:absolute;width:97%;padding-bottom:92%;top:88%;z-index:1;border-radius:100%;background:#ef4d58;background:linear-gradient(left,#ef4d58 10%,#ce1f2b 20%)}.ys .pi{width:50%;height:100%;overflow:hidden;position:relative;float:left}.ys .pl,.ys .pr{position:absolute;width:200%;height:120%;left:50%;transform:rotate(10deg);background:#ef4d58;background:linear-gradient(left,#ef4d58 10%,#ce1f2b 20%)}.ys .pr{right:50%;left:auto;transform:rotate(-10deg)}</style><div class=ys><div class=a><div class=b><div class=c><div class=d><div class=e><div class=f></div><div class=g></div><div class="t t1"></div><div class="t t2"></div><div class="t t3"></div><div class="t t4"></div><div class="t t5"></div><div class="t t6"></div><div class="t t7"></div><div class=p><div class=pw><div class=pi><div class=pl></div></div><div class=pi><div class=pr></div></div></div></div></div></div></div></div></div></div>
+<script>
+(function () {
+    var count = parseInt(sessionStorage.getItem('count') || 0, 10);
+
+    if (count < 100) {
+        sessionStorage.setItem('count', count + 1);
+        setTimeout(function () {
+            location.reload();
+        }, 1000);
+    } else {
+        document.write('done');
+    }
+}());
+</script>

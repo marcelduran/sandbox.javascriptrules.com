@@ -1,0 +1,191 @@
+<style>body {width: 650px; margin: 0 auto; font:93% sans-serif; line-height: 140%;}</style>
+
+<h2>Pure CSS3 images? Hmm, maybe later</h2>
+
+<p>Requested by several designers at Yahoo! for the original <a href="http://d.yimg.com/jc/ydn/speedometer.png">YSlow logo</a> PSD to be used in promotional materials such as t-shirts, posters, flyers, etc in some <a href="http://girlgeekdinner.pathable.com/">events</a> <a href="http://www.jacobsschool.ucsd.edu/student/student_newsletter/item.sfe?type=feed&item_id=1675&feed_id=17&item_type=event">that</a> <a href="http://velocityconf.com/velocity2011/public/schedule/detail/20287">occurred</a> <a href="http://en.oreilly.com/velocity-mar2011/public/schedule/detail/18635">along</a> <a href="http://developer.yahoo.com/blogs/ydn/posts/2011/06/yslowmobile/">this</a> <a href="http://velocity.oreilly.com.cn/2011/index.php?func=autobio&name=Betty+Tso">year</a>, I had no idea where it was ever since I joined the <a href="http://developer.yahoo.com/performance/">Exceptional Performance Team</a> to take care of <a href="http://getyslow.com/">YSlow</a> amongst other performance tools. In order to solve this problem I decided to rebuild it from scratch because it doesn't seem so complicated, the problem was I'm a speed freak, not a designer so inspired by the famous <a href="http://www.subcide.com/articles/pure-css-twitter-fail-whale/">pure css Twitter fail whale</a> I put my CSS muscles to work out focusing obviously on performance to provide those designers a <a href="http://jsfiddle.net/marcelduran/g7KvW/5/embedded/result/">scalable YSlow logo</a> for their delight as well as potentially having a smaller image payload to be used on the web.</p>
+
+<h3>The Challenge</h3>
+<p>It was an interesting challenge from performance perspective since the less code I use the smaller the final image would be and how fast it would perform (rendering time). My goal was to achieve a one-size-fits all solution to be used in the wild on the web. Besides performance, as a frontend engineer I was also interested in how CSS3 could help solve this issue (cross-browser possibly) and the limitations imposed.</p>
+<p>I use Chrome for development so my first goal was to make it happen for this one first before making it cross-browser compatible. It was also easy to benchmark the rendering time which was my main point of concern when talking about CSS3 background gradients, border radius, transformation, etc.<p>
+
+<h3>Getting my Hands Dirt with CSS3 Cooking</h3>
+<p>Having <a href="http://jsfiddle.net/">JSFiddle</a> as my playground was really helpful because it was a trial and error task plus I could keep track of versions and share so easily. <a href="http://code.google.com/chrome/devtools/docs/elements-styles.html#styles_edit">Chrome Developer Tools: Element Styles</a> played also an important role letting me test my changes on-the-fly.</p>
+<p>Here is <a href="http://jsfiddle.net/marcelduran/g7KvW/6/">my JSFiddle playground</a> where you can see the code and final image result:</p>
+<iframe style="width: 100%; height: 300px; border: 1px solid #3d668f;" src="http://jsfiddle.net/marcelduran/g7KvW/6/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<p>The three images on <strong>Result</strong> tab from top-down: original (250px width), pure CSS3 with 250px width and pure CSS3 with 50% width. If you're reading this post on Chrome you're expected to get better results. JSFiddle also allows you to fork the code and apply your own changes, be my guest.</p>
+<p>With 21 DOM elements (22 counting the <code>&lt;style&gt;</code> block) and using uneven <code>border-radius</code> for geometries, background gradients to make it shiny, rounded and more realistic and some transform rotations were enough to finally get the YSlow speedometer logo without the red needle. My first attempt was to use <a href="http://jonrohan.me/guide/css/creating-triangles-in-css/">DOM element borders to achieve a pointy triangle</a> which works fine but unfortunately it did not scale due to <a href="http://www.w3.org/TR/CSS2/box.html#value-def-border-width">percentage values not being allowed</a> on <code>border-width</code> and background gradients are not applied to borders either making it not shiny as in the original image. When I hit this wall I pinged <a href="http://twitter.com/thierrykoblentz">Thierry Koblentz</a> to the rescue. He eats CSS not only for breakfast and is always up for CSS challenges. It was impressive, he came up with a very nice solution using rotated displaced DIVs hiding the undesired parts with <code>overflow:hidden</code> which allowed me to make it shiny through background gradient. As a plus he also included a nice transition that smoothly animates the needle to the max value when hovering.</p>
+<p>Reached my goal for Chrome using basically W3C specification for CSS3 and a few <code>-webkit-</code> prefixes, it was time to attack the other browsers, so I started adding other vendors prefixes like <code>-moz-</code>, <code>-o-</code>, <code>-ms-</code> and <code>filter</code> for Internet Explorer.</p>
+
+<h3>Cross-Browser Results</h3>
+<p>I got very disappointed with the cross-browser results and after spending some time trying to figure out a way to fix for all browsers without increasing the CSS code or adding more HTML elements I gave up and played the <a href="http://www.johnlennon.com/">John Lennon</a>: <em>"Imagine there's no cross-browser issue..."</em> (I wonder how come our <a href="http://twitter.com/stoyanstefanov">honorable Performance Calendar curator</a> <a href="http://www.phpied.com/there-was-a-dude-who-liked-to-write-code/">hasn't</a> <a href="http://www.phpied.com/silicon-valley/">thought</a> <a href="http://www.sultansofspeed.com/">about</a> <a href="http://www.phpied.com/help-write-lyrics-give-png-a-chance/">such</a> <a href="http://www.youtube.com/watch?v=bPdkWJe9XH0">song</a> <a href="http://www.phpied.com/another-loc/">before</a>).</p>
+<h4>The original image (PNG24)</h4>
+<p><img src="images/original.png" alt="original YSlow logo in PNG24 format"></p>
+<h4>The screenshots for the tested browsers with comments</h4>
+<table width:"100%">
+    <tbody>
+        <tr>
+            <th>Browser</th>
+            <th>Vendor Specific CSS3</th>
+            <th>W3C CSS3 only</th>
+        <tr>
+        <tr>
+            <td>Chrome 15</td>
+            <td><img src="images/chrome.png" alt="yslow logo on chrome 15 screenshot"><p>Best one</p></td>
+            <td><img src="images/chrome-w3c.png" alt="yslow logo w3c only on chrome 15 screenshot"><p>Faded, bad needle</p></td>
+        </tr>
+        <tr>
+            <td>Firefox 8</td>
+            <td><img src="images/ff8.png" alt="yslow logo on firefox 8 screenshot"><p>Misplaced needle</p></td>
+            <td><img src="images/ff8-w3c.png" alt="yslow logo w3c only on firefox 8 screenshot"><p>Too faded, bad needle</p></td>
+        </tr>
+        <tr>
+            <td>Opera 11</td>
+            <td><img src="images/opera.png" alt="yslow logo on opera 11 screenshot"><p>Misplaced needle, broken glass</p></td>
+            <td><img src="images/opera-w3c.png" alt="yslow logo w3c only on opera 11 screenshot"><p>Too faded, broken glass</p></td>
+        </tr>
+        <tr>
+            <td>Safari 5<br>including iOS5</td>
+            <td><img src="images/safari.png" alt="yslow logo on safari 5 screenshot"><p>Good one</p></td>
+            <td><img src="images/safari-w3c.png" alt="yslow logo w3c only on safari 5 screenshot"><p>Faded, Atari 2600-like</p></td>
+        </tr>
+        <tr>
+            <td>Firefox 3</td>
+            <td><img src="images/ff3.png" alt="yslow logo on firefox 3 screenshot"><p><a href="http://en.wikipedia.org/wiki/The_Persistence_of_Memory">Salvador Dali's clock</a></p></td>
+            <td><img src="images/ff3-w3c.png" alt="yslow logo w3c only on firefox 3 screenshot"><p>Too faded, Atari 2600-like</p></td>
+        </tr>
+        <tr>
+            <td>IE 6-9</td>
+            <td><img src="images/ie.png" alt="yslow logo on internet explorer screenshot"><p><a href="http://www.flags.net/MICR.htm">Micronesia flag</a>-like</p></td>
+            <td><img src="images/ie-w3c.png" alt="yslow logo w3c only on internet explorer screenshot"><p>Cropped <a href="http://www.flags.net/EUUN.htm">European Union flag</a>-like</p></td>
+        </tr>
+    </tbody>
+</table>
+<p>Interesting how the W3C only versions fallback "gracefully", that shows no browser is strictly following specs or either the specs are not fully defined yet by the time of this writing. Even not fully resembling the original, with some exceptions, they all look like a speedometer gauge somehow, except er, guess who?</p>
+<p>With that pure CSS3 image working decently at least on Chrome I was able to provide the designers what they were after and that was enough for me to start my performance benchmarking. I know one might argue it's possible to make it work better on other browsers with more DOM elements and/or more CSS selectors/rules, but that was a time consuming task and I was working on it during my spare time, so enough with CSS and let's see what we are here for.</p>
+
+<h3>Benchmarking</h3>
+<p>In order to compare real image files versus CSS3 generated ones, I created a few pages containing only one image per page, either real files URL and <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a> (<code>&ltimg src="..."&gt;</code>) or CSS3 (HTML + CSS <code>&lt;style&gt;</code> block in the same page).</p>
+<h4>Payload</h4>
+<p>Hosting these pages in a local Apache server I was able to fetch them with and without compression (<code>Accept-Encoding: gzip,deflate</code>) via <a href="http://curl.haxx.se/"><code>curl</code></a> getting the content length for the CSS3 and data URI ones and the real images URL obviously without compression. The minified with compression lengths were used as payload per page.</p>
+<h4>Rendering</h4>
+<p>Adding a small script at the bottom of these pages that reloads the page 100 times with 1 second interval using <a href="https://developer.mozilla.org/en/DOM/Storage#sessionStorage"><code>sessionStorage</code></a> for counting and with <a href="http://code.google.com/chrome/devtools/docs/timeline.html">Chrome Developer Tools: Timeline Panel</a> recording the page activity, I was able to export the logged data then with a NodeJS script I could extract and filter only the timing related to the rendering activity, cleaning the top and bottom 5% of the sample to remove some noisy data then getting the average in milliseconds.</p>
+<p><img src="images/timeline.png" alt"Chrome Developer Tools: Timeline Panel"></p>
+<h4>The compared versions of YSlow logo image</h4>
+<table>
+    <tbody>
+        <tr>
+            <th>Type</th>
+            <th>Pros</th>
+            <th>Cons</th>
+            <th>Payload (bytes)</th>
+            <th>Rendering (ms)</th>
+        </tr>
+        <tr>
+            <td>CSS3 W3C</td>
+            <td>"Standard", small</td>
+            <td>Not x-browser yet, extra markup</td>
+            <td align="right">807</td>
+            <td align="right">4.436</td>
+        </tr>
+        <tr>
+            <td>CSS3 -o-</td>
+            <td>Works on Opera :-)</td>
+            <td>Vendor specific, extra markup</td>
+            <td align="right">811</td>
+            <td align="right">-</td>
+        </tr>
+        <tr>
+            <td>CSS3 -moz-</td>
+            <td>Works on Firefox :-)</td>
+            <td>Vendor specific, extra markup</td>
+            <td align="right">815</td>
+            <td align="right">-</td>
+        </tr>
+        <tr>
+            <td>CSS3 -ms-</td>
+            <td>Works on IE :-)</td>
+            <td>Vendor specific, extra markup</td>
+            <td align="right">945</td>
+            <td align="right">-</td>
+        </tr>
+        <tr>
+            <td>CSS3 -webkit-</td>
+            <td>Works on Chrome/Safari</td>
+            <td>Vendor specific, extra markup</td>
+            <td align="right">977</td>
+            <td align="right">11.233</td>
+        </tr>
+        <tr>
+            <td>CSS3 all</td>
+            <td>Covers "all" browsers, small, animation</td>
+            <td>Unused rules, extra markup</td>
+            <td align="right">1400</td>
+            <td align="right">11.238</td>
+        </tr>
+        <tr>
+            <td>WebP</td>
+            <td>Smallest</td>
+            <td>Not supported by all major browsers, no transparency</td>
+            <td align="right">4066</td>
+            <td align="right">1.769</td>
+        </tr>
+        <tr>
+            <td>WebP inline</td>
+            <td>Smallest image file</td>
+            <td>Non x-browser, no transparency, non IE &lt; 8</td>
+            <td align="right">4175</td>
+            <td align="right">5.701</td>
+        </tr>
+        <tr>
+            <td>JPG inline</td>
+            <td>Smaller image file, x-browser</td>
+            <td>No transparency, non IE &lt; 8</td>
+            <td align="right">7881</td>
+            <td align="right">3.313</td>
+        </tr>
+        <tr>
+            <td>JPG</td>
+            <td>Smaller image file, x-browser</td>
+            <td>No transparency</td>
+            <td align="right">7926</td>
+            <td align="right">1.768</td>
+        </tr>
+        <tr>
+            <td>PNG8</td>
+            <td>Small image file, x-browser, transparency</td>
+            <td>Up to 256 colors</td>
+            <td align="right">8269</td>
+            <td align="right">1.854</td>
+        </tr>
+        <tr>
+            <td>PNG8 inline</td>
+            <td>Small image file, transparency</td>
+            <td>Up to 256 colors, non IE &lt; 8</td>
+            <td align="right">8399</td>
+            <td align="right">4.267</td>
+        </tr>
+        <tr>
+            <td>PNG24</td>
+            <td>High quality, alpha channel</td>
+            <td>Large file, buggy on IE &lt; 7</td>
+            <td align="right">27391</td>
+            <td align="right">1.736</td>
+        </tr>
+        <tr>
+            <td>PNG24 inline</td>
+            <td>High quality, alpha channel</td>
+            <td>Large file, non IE &lt; 8</td>
+            <td align="right">27704</td>
+            <td align="right">5.968</td>
+        </tr>
+    </tbody>
+</table>
+<p>Which leads to the following chart:</p>
+<p><a href="https://docs.google.com/spreadsheet/ccc?key=0Amm9wgJ9NFxEdEpwaXRKd01mTTF1elVqY0pYUDBEVGc"><img src="images/payload-vs-rendering.png" alt="Payload vs Rendering"></a></p>
+<p>CSS3 generated images can achieve smaller payloads compared to regular images either URL or data URI ones. In this YSlow logo example, the W3C standard CSS3 is roughly 34 times smaller than PNG24 image version. Data URI versions of the same image type have around the same payload after compressed, they get increased a few bytes only, interesting in this case the inline version of JPG is slightly smaller than the regular JPG image file.</p>
+<p>On the other hand CSS3 generated images rendering time is worse than regular images, being around 6.5 times slower than the PNG24 version. The inline versions more than double the rendering time when compared to their regular image file versions. The CSS3 W3C standard version rendering performed 2.5 times faster than <code>-webkit-</code> or the one with all browser vendors prefixes, this doesn't necessarily mean it's really faster because per the screenshots results above none of them triggered all the CSS rules to render the logo properly according to the original version.</p>
+<p>These rendering times were measured just by displaying the static images on the page without any hovering user interaction that animates the gauge needle on CSS3 versions. These numbers would likely to be increased in the case-scenario where users are allowed to hide-and-show or drag-and-drop images over the viewport triggering several <a href="http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/">repaint, reflow and restyle</a> on these DOM elements.</p>
+<p>Comparing apples-to-apples quality-wise, CSS3 with all prefixes or <code>-webkit-</code> on Chrome are comparable to the PNG24 version, both have transparency background and no pixelation. CSS3 is 34 times smaller, 6.5 times slower (in order of milliseconds) and has the advantage of keeping the same payload for different sizes while PNG would increase when resized from the original source (PSD when available) to avoid quality loss, however users are not able to save CSS3 as image without taking screenshots.</p>
+
+<h3>Are we there yet?</h3>
+<p>Not really, hopefully in the near future we'll get rid of browser vendors specific prefixes and have a one-size-fits-all CSS solution that works equally in all browsers, but even when we get there, it's a very time consuming task to create images from scratch using DOM elements and styles manually, an illustrator tool to aid drawing is high demanded for such task where one could drag over <a href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve">B&eacute;zier curves</a> adjusting the control points in order to get the correspondent directives to CSS3 <code>border-radius</code> shaping geometric lines properly.</p>

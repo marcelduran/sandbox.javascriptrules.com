@@ -1,0 +1,140 @@
+<style type="text/css">
+.ys {
+    width: 250px;
+}
+/* borders and background */
+.ys .a {padding:1.5%;
+    -webkit-border-top-left-radius:1000em;
+    -webkit-border-top-right-radius:1000em;
+    background: #b0b4b7;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%,#b0b4b7), color-stop(54%,#3f3f40));
+    background: -webkit-linear-gradient(left, #b0b4b7 8%,#3f3f40 54%);
+}
+
+.ys .b {padding:5% 5% 0 5%;
+    -webkit-border-top-left-radius:1000em;
+    -webkit-border-top-right-radius:1000em;
+    background: #dadadc;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%,#dadadc), color-stop(54%,#3a3a3c));
+    background: -webkit-linear-gradient(left, #dadadc 8%,#3a3a3c 54%);
+}
+
+.ys .c {padding:2.5% 2.5% 0 2.5%;
+    -webkit-border-top-left-radius:1000em;
+    -webkit-border-top-right-radius:1000em;
+    background: #e1e4e5;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%,#e1e4e5), color-stop(54%,#010204));
+    background: -webkit-linear-gradient(left, #e1e4e5 8%,#010204 54%);
+}
+
+.ys .d {padding:2%; background-color:#0c1c48;
+    -webkit-border-top-left-radius:1000em;
+    -webkit-border-top-right-radius:1000em;
+}
+
+.ys .e {padding:58% 5% 0 5%; position:relative; overflow:hidden;
+    -webkit-border-top-left-radius:1000em;
+    -webkit-border-top-right-radius:1000em;
+    background: #394d97;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%,#394d97), color-stop(54%,#282963));
+    background: -webkit-linear-gradient(left, #394d97 8%,#282963 54%);
+}
+
+/* glare */
+.ys .f {padding:50% 56%; position:absolute; top:11%; left:0;
+    -webkit-border-top-left-radius:166em 166em;
+    -webkit-border-top-right-radius:133em 139em;
+    background: #2c3e90;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%,#2c3e90), color-stop(54%,#120744));
+    background: -webkit-linear-gradient(left, #2c3e90 8%,#120744 54%);
+}
+
+/* base */
+.ys .g {padding:50% 74%; position:absolute; bottom:-135%; left:-16%;
+    -webkit-border-radius:1000em;
+    background: #99c1e2;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#99c1e2), color-stop(3%,#7aaed9), color-stop(12%,#2f6bb0));
+    background: -webkit-linear-gradient(top, #99c1e2 1%,#7aaed9 3%,#2f6bb0 12%);
+}
+
+/* ticks */
+.ys .t {width:14%; height:6%; background-color:#e7e8e9; position:absolute;
+    -webkit-border-radius:1000em;
+}
+.ys .t1 {left:7%; bottom:18%;}
+.ys .t2 {left:11%; bottom:47%;
+    -webkit-transform:rotate(30deg);
+}
+.ys .t3 {left:24%; bottom:70%;
+    -webkit-transform:rotate(60deg);
+}
+.ys .t4 {left:44%; top:16%;
+    -webkit-transform:rotate(90deg);
+}
+.ys .t5 {right:24%; bottom:70%;
+    -webkit-transform:rotate(-60deg);
+}
+.ys .t6 {right:11%; bottom:47%;
+    -webkit-transform:rotate(-30deg);
+}
+.ys .t7 {right:7%; bottom:18%;}
+
+/* pointer by @thierrykoblentz */
+.ys .p {padding-bottom:52%; width:11%; position:absolute; left:50%; bottom:20%; margin-left:-5%;
+    -webkit-transform:rotate(20deg);
+    -webkit-transform-origin:bottom;
+    -webkit-transition:all 200ms cubic-bezier(0.200, 0.000, 1.000, 0.360);
+}
+.ys:hover .p {
+    -webkit-transform:rotate(90deg);
+}
+.ys .pw {position:absolute; top:0; right:0; bottom:0; left:0;}
+.ys .pw > :first-child {border-right:1px solid transparent; margin-right:-2px;}
+.ys .p::after {content:""; position:absolute; width:97%; padding-bottom:92%; top:88%; z-index:1;
+    -webkit-border-radius:1000em;
+    background: #ef4d58;
+    background: -webkit-gradient(linear, left top, right top, color-stop(10%,#ef4d58), color-stop(20%,#ce1f2b));
+    background: -webkit-linear-gradient(left, #ef4d58 10%,#ce1f2b 20%);
+}
+.ys .pi {width:50%; height:100%; overflow:hidden; position:relative; float:left;}
+.ys .pl, .ys .pr {position:absolute; width:200%; height:120%; left:50%;
+    -webkit-transform:rotate(10deg);
+    background: #ef4d58;
+    background: -webkit-gradient(linear, left top, right top, color-stop(10%,#ef4d58), color-stop(20%,#ce1f2b));
+    background: -webkit-linear-gradient(left, #ef4d58 10%,#ce1f2b 20%);
+}
+.ys .pr {right:50%; left:auto;
+    -webkit-transform:rotate(-10deg);
+}
+</style>
+<div class="ys">
+    <div class="a">
+        <div class="b">
+            <div class="c">
+                <div class="d">
+                    <div class="e">
+                        <div class="f"></div>
+                        <div class="g"></div>
+                        <div class="t t1"></div>
+                        <div class="t t2"></div>
+                        <div class="t t3"></div>
+                        <div class="t t4"></div>
+                        <div class="t t5"></div>
+                        <div class="t t6"></div>
+                        <div class="t t7"></div>
+                        <div class="p">
+                            <div class="pw">
+                                <div class="pi">
+                                    <div class="pl"></div>
+                                </div>
+                                <div class="pi">
+                                    <div class="pr"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
